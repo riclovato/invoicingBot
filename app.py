@@ -1,6 +1,9 @@
+import time
+
 import pandas as pd
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
+from pywinauto.application import Application, ProcessNotFoundError
 
 
 class InvoicingBot:
@@ -32,7 +35,7 @@ class InvoicingBot:
             if 'amount' not in df.columns.str.lower() and 'valor' not in df.columns.str.lower():
                 print("O arquivo não possui a coluna 'Valor'")
                 return None
-            if 'Status' not in df.columns.str.lower():
+            if 'status' not in df.columns.str.lower():
                 print("O arquivo não possui a coluna 'Status'")
                 return None
 
@@ -45,3 +48,12 @@ bot = InvoicingBot()
 file_path = bot.select_file()
 if file_path:
     bot.read_file(file_path)
+try:
+    app = Application(backend="uia").connect(path=r"C:\Program Files (x86)\Contoso, Inc\Contoso Invoicing\LegacyInvoicingApp.exe")
+except(ProcessNotFoundError, TimeoutError):
+    app = Application(backend="uia").start(r"C:\Program Files (x86)\Contoso, Inc\Contoso Invoicing\LegacyInvoicingApp.exe")
+main_window = app.window(title="Contoso Invoice")
+time.sleep(10)
+#invoices_element = main_window.child_window(auto_id="invoices-button", control_type="Button")
+
+#invoices_element.click()
