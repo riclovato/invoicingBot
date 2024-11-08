@@ -65,7 +65,44 @@ date_field = main_window.child_window(auto_id="txtDate103", control_type="Edit")
 if date_field.exists():
     date_field.set_focus()
     date_field.type_keys("^a")
-    date_field.type_keys("01/01/2023")
-    print("Digitando a data '01/01/2023' no campo 'Date'")
+    date_field.type_keys("08/11/2024")
+    print("Digitando a data no campo 'Date'")
 else:
     print("Não foi possível encontrar o campo 'Date'")
+
+account_field = main_window.child_window(auto_id="txtAccount103", control_type="Edit")
+if account_field.exists():
+    account_field.set_focus()
+    account_field.type_keys("^a")
+    account_field.type_keys("NomeCont")
+    print("Preenchendo a conta.")
+else:
+    print("Não foi possível encontrar o campo 'account'")
+
+contact_field = main_window.child_window(auto_id="txtContactEmail103", control_type="Edit")
+if contact_field.exists():
+    contact_field.set_focus()
+    contact_field.type_keys("^a")
+    contact_field.type_keys("contato@email.com")
+    print("Preenchendo o contato.")
+else:
+    print("Não foi possível encontrar o campo 'contato'")
+
+amount_field = main_window.child_window(auto_id="txtAmount103", control_type="Edit")
+if amount_field.exists():
+    amount_field.set_focus()
+    amount_field.type_keys("^a")
+    amount_field.type_keys("1324562")
+    print("Preenchendo o valor.")
+else:
+    print("Não foi possível encontrar o campo 'amount'")
+
+status_field = main_window.child_window(auto_id="cmbStatusChooser103", control_type="ComboBox")
+if status_field.exists():
+    status_field.select('Paid')
+    print("Atualizando o status.")
+else:
+    print("Não foi possível encontrar o campo 'status'")
+
+save_button = main_window.child_window(auto_id="btnSave", control_type="Button")
+save_button.click()
