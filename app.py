@@ -7,8 +7,6 @@ from pywinauto.application import Application, ProcessNotFoundError
 
 
 class InvoicingBot:
-    def __init__(self):
-        pass
 
     def select_file(self):
         Tk().withdraw() # esconde janela principal do Tkinter
@@ -52,8 +50,11 @@ try:
     app = Application(backend="uia").connect(path=r"C:\Program Files (x86)\Contoso, Inc\Contoso Invoicing\LegacyInvoicingApp.exe")
 except(ProcessNotFoundError, TimeoutError):
     app = Application(backend="uia").start(r"C:\Program Files (x86)\Contoso, Inc\Contoso Invoicing\LegacyInvoicingApp.exe")
-main_window = app.window(title="Contoso Invoice")
+main_window = app.window(title="Contoso Invoicing")
 time.sleep(10)
-#invoices_element = main_window.child_window(auto_id="invoices-button", control_type="Button")
-
-#invoices_element.click()
+invoices_element = main_window.child_window(class_name="TextBlock", title="Invoices")
+if invoices_element.exists():
+    invoices_element.click_input()
+    print("Clicando no elemento 'Invoices'")
+else:
+    print("Não foi possível encontrar o elemento 'Invoices'")
