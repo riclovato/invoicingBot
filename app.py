@@ -58,3 +58,14 @@ if invoices_element.exists():
     print("Clicando no elemento 'Invoices'")
 else:
     print("Não foi possível encontrar o elemento 'Invoices'")
+
+date_field = main_window.child_window(auto_id="txtDate103", control_type="Edit")
+
+# Interagir com o campo de texto "Date"
+if date_field.exists():
+    date_field.set_focus()
+    date_field.type_keys("^a")
+    date_field.type_keys("01/01/2023")
+    print("Digitando a data '01/01/2023' no campo 'Date'")
+else:
+    print("Não foi possível encontrar o campo 'Date'")
